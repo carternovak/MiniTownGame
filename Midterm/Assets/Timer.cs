@@ -9,7 +9,6 @@ public class Timer : MonoBehaviour
 {
     public float startTimeValue = 10;
     public float timeValue;
-
     public TextMeshProUGUI timeRemaining;
     public TextMeshProUGUI redHanded;
     public Image redImage;
@@ -34,7 +33,6 @@ public class Timer : MonoBehaviour
             if (Input.GetKeyDown("r"))
             {
                 SceneManager.LoadScene("SampleScene");
-
                 SceneManager.SetActiveScene(SceneManager.GetSceneByName("SampleScene"));
             }
         }

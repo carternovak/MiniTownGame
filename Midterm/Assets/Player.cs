@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Implementation of player movement was from previous tutorials in class (3D Tutorial)
     [SerializeField] float _mouseSensitivity = 10f;
     [SerializeField] float _moveSpeed = 3f;
     [SerializeField] Camera _cam;

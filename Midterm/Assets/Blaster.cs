@@ -5,6 +5,7 @@ using TMPro;
 
 public class Blaster : MonoBehaviour
 {
+    // Implementation of shooting citation: https://www.youtube.com/watch?v=wZ2UUOC17AY
     public GameObject bullet;
     public float shootForce;
     public float timeBetweenShooting, spread;
