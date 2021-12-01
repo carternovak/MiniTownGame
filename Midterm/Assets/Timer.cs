@@ -32,8 +32,8 @@ public class Timer : MonoBehaviour
             redHanded.gameObject.SetActive(true);
             if (Input.GetKeyDown("r"))
             {
-                SceneManager.LoadScene("SampleScene");
-                SceneManager.SetActiveScene(SceneManager.GetSceneByName("SampleScene"));
+                SceneManager.LoadScene("Level1");
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level1"));
             }
         }
             
