@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI levelCompletedText;
     public Image levelCompletedImg;
     public AudioSource RedHand;
+    public bool hasSoundPlayed = false;
+    // Audio File citation: https://mixkit.co/free-sound-effects/buzzer/
     // Start is called before the first frame update
     void Start()
     {
@@ -31,14 +33,15 @@ public class GameManager : MonoBehaviour
 
     void LevelCompleted()
     {
-        if (transform.childCount == 0)
+        if (transform.childCount == 0 && !(redImage.IsActive()))
         {
             levelCompletedText.gameObject.SetActive(true);
             levelCompletedImg.gameObject.SetActive(true);
 
             if (Input.GetKeyDown("space"))
             {
-                SceneManager.LoadScene("Level2");
+                SceneManager.LoadScene(1);
+                LoadingScene();
                 LoadingScene();
                 SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level2"));
                 NewLevel();
@@ -62,17 +65,19 @@ public class GameManager : MonoBehaviour
             timeValue = Mathf.Round(startTimeValue);
             timeRemaining.SetText(timeValue + "s");
         }
-        else
+        else if (startTimeValue <= 0 && !(levelCompletedImg.IsActive()))
         {
             redImage.gameObject.SetActive(true);
             redHanded.gameObject.SetActive(true);
-            RedHand.Play();
+            PlaySound();
             if (Input.GetKeyDown("r"))
             {
-                SceneManager.LoadScene("Level1");
+                SceneManager.LoadScene(0);
+                LoadingScene();
                 LoadingScene();
                 SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level1"));
                 NewLevel();
+                hasSoundPlayed = false;
             }
         }
     }
@@ -81,6 +86,15 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadingScene()
     {
         yield return new WaitForSeconds(3);
+    }
+
+    void PlaySound()
+    {
+        if (!hasSoundPlayed) 
+        {
+            RedHand.Play();
+            hasSoundPlayed = true;
+        }
     }
 
 }

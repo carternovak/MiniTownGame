@@ -72,6 +72,7 @@ public class Blaster : MonoBehaviour
         currentBullet.transform.forward = directionWithSpread.normalized;
 
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
+        currentBullet.transform.Rotate(90,0,0, Space.Self);
         
         bulletsLeft--;
         bulletsShot++;
