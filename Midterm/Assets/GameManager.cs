@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public Image redImage;
     public TextMeshProUGUI levelCompletedText;
     public Image levelCompletedImg;
+    public Text level2Hint;
+    public TextMeshProUGUI endGameText;
     public AudioSource RedHand;
     public bool hasSoundPlayed = false;
     // Audio File citation: https://mixkit.co/free-sound-effects/buzzer/
@@ -33,10 +35,18 @@ public class GameManager : MonoBehaviour
 
     void LevelCompleted()
     {
-        if (transform.childCount == 0 && !(redImage.IsActive()))
+        bool sceneCheck = (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level2"));
+        if (sceneCheck && transform.childCount == 0 && !(redImage.IsActive()))
+        {
+            //levelCompletedText.gameObject.SetActive(true);
+            levelCompletedImg.gameObject.SetActive(true);
+            endGameText.gameObject.SetActive(true);
+
+        } else if (transform.childCount == 0 && !(redImage.IsActive()))
         {
             levelCompletedText.gameObject.SetActive(true);
             levelCompletedImg.gameObject.SetActive(true);
+            level2Hint.gameObject.SetActive(true);
 
             if (Input.GetKeyDown("space"))
             {
@@ -47,12 +57,15 @@ public class GameManager : MonoBehaviour
                 NewLevel();
             }
         }
+
     }
 
     void NewLevel()
     {
         levelCompletedText.gameObject.SetActive(false);
         levelCompletedImg.gameObject.SetActive(false);
+        level2Hint.gameObject.SetActive(false);
+        endGameText.gameObject.SetActive(false);
         redImage.gameObject.SetActive(false);
         redHanded.gameObject.SetActive(false);
     }
